@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
       <Header />
-      <main className='bg-bg-dark min-h-[calc(100vh-64px)] px-4 pb-4 flex flex-col gap-4'>
+      <main className='min-h-[calc(100vh-64px)] px-4 pb-4 flex flex-col gap-4 md:flex-row md:flex-wrap md:max-w-[960px] md:p-0 md:mx-auto md:content-start'>
         <Component {...pageProps} />
       </main>
     </>

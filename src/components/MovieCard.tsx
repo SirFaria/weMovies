@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export function MovieCard() {
   return (
-    <div className='bg-white rounded flex flex-col items-center p-[10px]'>
+    <div className='bg-white rounded flex flex-col items-center p-[10px] md:min-w-[309px] md:h-fit'>
       <Image
         width={147}
         height={188}
