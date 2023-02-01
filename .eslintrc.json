@@ -1,0 +1,46 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "standard",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "rules": {
+    "camelcase": ["error", { "ignoreImports": true }],
+    "prettier/prettier": "error",
+    "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+    "prefer-arrow-callback": "error",
+    "prefer-destructuring": "warn",
+    "default-case": "error",
+    "default-case-last": "error",
+    "arrow-body-style": ["error", "as-needed"],
+    "arrow-spacing": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
