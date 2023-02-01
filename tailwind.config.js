@@ -13,6 +13,7 @@ module.exports = {
         'text-gray': '#999999',
         'btn-blue': '#009EDD',
         'input-border': '#D9D9D9',
+        'btn-green': '#039B00',
       },
     },
   },
