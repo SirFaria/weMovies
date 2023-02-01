@@ -1,14 +1,15 @@
 import Image from 'next/image'
 import { ICartItems, useCart } from '~/contexts/CartContext'
+import { formatToBRL } from '~/utils/currencyFormatter'
 import { Counter } from './Counter'
 
 interface ICartItemMobileProps {
-  movieData: ICartItems
+  itemData: ICartItems
 }
 
-export function CartItemMobile({ movieData }: ICartItemMobileProps) {
+export function CartItemMobile({ itemData }: ICartItemMobileProps) {
   const { removeItemFromCart } = useCart()
-  const subtotal = movieData.amount * movieData.price
+  const subtotal = itemData.amount * itemData.price
   return (
     <div className='w-full flex gap-4 justify-between md:invisible md:hidden'>
       <Image
@@ -16,21 +17,18 @@ export function CartItemMobile({ movieData }: ICartItemMobileProps) {
         height={82}
         className='w-fit max-w-[64px]'
         alt='Imagem da capa do filme'
-        src={movieData.image}
+        src={itemData.image}
       />
 
       <div className='flex flex-col gap-4 flex-1'>
         <div className='flex gap-4 items-center'>
           <p className='text-bg-dark text-sm font-bold whitespace-nowrap'>
-            {movieData.title}
+            {itemData.title}
           </p>
           <strong className='text-bg-dark whitespace-nowrap ml-auto'>
-            {new Intl.NumberFormat('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            }).format(movieData.price)}
+            {formatToBRL(itemData.price)}
           </strong>
-          <button onClick={() => removeItemFromCart(movieData.id)}>
+          <button onClick={() => removeItemFromCart(itemData.id)}>
             <Image
               width={16}
               height={18}
@@ -41,16 +39,13 @@ export function CartItemMobile({ movieData }: ICartItemMobileProps) {
           </button>
         </div>
         <div className='flex gap-4 justify-between items-end'>
-          <Counter />
+          <Counter itemId={itemData.id} itemAmount={itemData.amount} />
           <div className='flex flex-col items-end'>
             <span className='text-text-gray text-xs font-bold uppercase'>
               Subtotal
             </span>
             <strong className='text-bg-dark whitespace-nowrap'>
-              {new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              }).format(subtotal)}
+              {formatToBRL(subtotal)}
             </strong>
           </div>
         </div>

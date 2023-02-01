@@ -19,6 +19,7 @@ interface ICartContext {
   cartItems: ICartItems[]
   addItemToCart: (movie: IMovies) => void
   removeItemFromCart: (id: number) => void
+  changeItemAmount: (id: number, amount: number) => void
 }
 
 export const CartContext = createContext<ICartContext>({} as ICartContext)
@@ -53,6 +54,17 @@ export function CartProvider({ children }: ICartProviderProps) {
     }
   }
 
+  function changeItemAmount(itemId: number, newAmount: number) {
+    const newCart = cartItems.map(item => {
+      if (item.id === itemId) {
+        return { ...item, amount: newAmount }
+      }
+      return item
+    })
+
+    setCartItems(newCart)
+  }
+
   function removeItemFromCart(itemId: number) {
     setCartItems(cartItems.filter(({ id }) => id !== itemId))
   }
@@ -61,7 +73,7 @@ export function CartProvider({ children }: ICartProviderProps) {
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addItemToCart, removeItemFromCart }}
+      value={{ cartItems, addItemToCart, removeItemFromCart, changeItemAmount }}
     >
       {children}
     </CartContext.Provider>

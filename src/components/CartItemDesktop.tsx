@@ -1,14 +1,15 @@
 import Image from 'next/image'
 import { ICartItems, useCart } from '~/contexts/CartContext'
+import { formatToBRL } from '~/utils/currencyFormatter'
 import { Counter } from './Counter'
 
 interface ICartItemDesktopProps {
-  movieData: ICartItems
+  itemData: ICartItems
 }
 
-export function CartItemDesktop({ movieData }: ICartItemDesktopProps) {
+export function CartItemDesktop({ itemData }: ICartItemDesktopProps) {
   const { removeItemFromCart } = useCart()
-  const subtotal = movieData.amount * movieData.price
+  const subtotal = itemData.amount * itemData.price
 
   return (
     <tr className='w-full'>
@@ -19,37 +20,31 @@ export function CartItemDesktop({ movieData }: ICartItemDesktopProps) {
             height={114}
             className='w-fit '
             alt='Imagem da capa do filme'
-            src={movieData.image}
+            src={itemData.image}
           />
           <div className='flex flex-col pl-[52px]'>
             <p className='text-bg-dark text-sm font-bold whitespace-nowrap'>
-              {movieData.title}
+              {itemData.title}
             </p>
             <strong className='text-bg-dark whitespace-nowrap'>
-              {new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              }).format(movieData.price)}
+              {formatToBRL(itemData.price)}
             </strong>
           </div>
         </div>
       </td>
 
       <td className='w-[170px]'>
-        <Counter />
+        <Counter itemId={itemData.id} itemAmount={itemData.amount} />
       </td>
 
       <td>
         <strong className='text-bg-dark whitespace-nowrap'>
-          {new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-          }).format(subtotal)}
+          {formatToBRL(subtotal)}
         </strong>
       </td>
 
       <td>
-        <button onClick={() => removeItemFromCart(movieData.id)}>
+        <button onClick={() => removeItemFromCart(itemData.id)}>
           <Image
             width={16}
             height={18}
