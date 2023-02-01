@@ -9,7 +9,10 @@ module.exports = {
         sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        'bg-dark': '#e2e8f0',
+        'bg-dark': '#2F2E41',
+        'text-gray': '#999999',
+        'btn-blue': '#009EDD',
+        'input-border': '#D9D9D9',
       },
     },
   },
