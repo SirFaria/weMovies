@@ -38,13 +38,7 @@ export default function Home() {
   return (
     <>
       {moviesList.map(movie => (
-        <MovieCard
-          key={movie.id}
-          id={movie.id}
-          title={movie.title}
-          price={movie.price}
-          image={movie.image}
-        />
+        <MovieCard key={movie.id} movieData={movie} />
       ))}
     </>
   )

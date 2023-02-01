@@ -1,9 +1,13 @@
 import Image from 'next/image'
-import { IMovies } from '~/contexts/CartContext'
+import { IMovies, useCart } from '~/contexts/CartContext'
 
-interface IMovieCardProps extends IMovies {}
+interface IMovieCardProps {
+  movieData: IMovies
+}
 
-export function MovieCard({ id, image, price, title }: IMovieCardProps) {
+export function MovieCard({ movieData }: IMovieCardProps) {
+  const { addItemToCart } = useCart()
+
   return (
     <div className='bg-white rounded flex flex-col items-center p-[10px] md:min-w-[309px] md:h-fit'>
       <Image
@@ -11,16 +15,19 @@ export function MovieCard({ id, image, price, title }: IMovieCardProps) {
         height={188}
         className='mb-2'
         alt='Imagem da capa do filme'
-        src={image}
+        src={movieData.image}
       />
-      <p className='font-bold text-xs text-bg-dark'>{title}</p>
+      <p className='font-bold text-xs text-bg-dark'>{movieData.title}</p>
       <span className='font-bold text-bg-dark'>
         {new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL',
-        }).format(price)}
+        }).format(movieData.price)}
       </span>
-      <button className='bg-btn-blue w-full py-[11px] mt-2 flex items-center justify-center rounded'>
+      <button
+        className='bg-btn-blue w-full py-[11px] mt-2 flex items-center justify-center rounded'
+        onClick={() => addItemToCart(movieData)}
+      >
         <Image
           width={12}
           height={12}
