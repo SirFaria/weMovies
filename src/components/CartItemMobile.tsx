@@ -1,8 +1,9 @@
 import Image from 'next/image'
+import { Counter } from './Counter'
 
-export function CartItem() {
+export function CartItemMobile() {
   return (
-    <div className='w-full flex gap-4 justify-between'>
+    <div className='w-full flex gap-4 justify-between md:invisible md:hidden'>
       <Image
         width={147}
         height={188}
@@ -11,7 +12,7 @@ export function CartItem() {
         src='/assets/viuva-negra.png'
       />
 
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-col gap-4 flex-1'>
         <div className='flex gap-4 items-center'>
           <p className='text-bg-dark text-sm font-bold whitespace-nowrap'>
             Homem Aranha
@@ -26,27 +27,7 @@ export function CartItem() {
           />
         </div>
         <div className='flex gap-4 justify-between items-end'>
-          <div className='flex gap-[11px] items-center h-fit'>
-            <Image
-              width={18}
-              height={18}
-              className=''
-              alt='Ícone de menos'
-              src='/assets/minus.svg'
-            />
-            <input
-              type='text'
-              // value={1}
-              className='max-w-[59px] h-fit pl-3 py-[3.5px] text-sm font-normal border border-input-border rounded'
-            />
-            <Image
-              width={18}
-              height={18}
-              className=''
-              alt='Ícone de mais'
-              src='/assets/plus.svg'
-            />
-          </div>
+          <Counter />
           <div className='flex flex-col items-end'>
             <span className='text-text-gray text-xs font-bold uppercase'>
               Subtotal
