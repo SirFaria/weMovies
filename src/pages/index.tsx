@@ -25,7 +25,7 @@ export default function Home() {
     return (
       <>
         <Image
-          className='animate-spin m-auto'
+          className='animate-spin m-auto md:mt-[calc(50vh - 72px)]'
           alt='Carregando itens'
           src='/assets/loader.png'
           width={55.41}
