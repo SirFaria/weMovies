@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { IMovies, useCart } from '~/contexts/CartContext'
+import { formatToBRL } from '~/utils/currencyFormatter'
 
 interface IMovieCardProps {
   movieData: IMovies
@@ -13,7 +14,7 @@ export function MovieCard({ movieData }: IMovieCardProps) {
   const isOnCart = thisMovie?.id === movieData.id
 
   return (
-    <div className='bg-white rounded flex flex-col items-center justify-between p-[10px] md:min-w-[309px] md:h- md:min-h-[298px]'>
+    <div className='bg-white rounded flex flex-col items-center justify-between p-[10px] md:min-w-[309px] md:h-fit md:min-h-[305px]'>
       <Image
         width={147}
         height={188}
@@ -23,10 +24,7 @@ export function MovieCard({ movieData }: IMovieCardProps) {
       />
       <p className='font-bold text-xs text-bg-dark'>{movieData.title}</p>
       <span className='font-bold text-bg-dark'>
-        {new Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL',
-        }).format(movieData.price)}
+        {formatToBRL(movieData.price)}
       </span>
       <button
         className={` ${
