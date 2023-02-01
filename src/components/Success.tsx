@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function Success() {
   return (
@@ -13,9 +14,11 @@ export function Success() {
         alt='Imagem de nada encontrado'
         src='/assets/success.svg'
       />
-      <button className='bg-btn-blue text-white text-sm font-bold mt-8 py-[11px] px-[60px] uppercase rounded'>
-        Voltar
-      </button>
+      <Link href='/'>
+        <button className='bg-btn-blue text-white text-sm font-bold mt-8 py-[11px] px-[60px] uppercase rounded'>
+          Voltar
+        </button>
+      </Link>
     </article>
   )
 }
