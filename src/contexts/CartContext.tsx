@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
+import Router from 'next/router'
 
 interface ICartProviderProps {
   children: ReactNode
@@ -20,6 +21,7 @@ interface ICartContext {
   addItemToCart: (movie: IMovies) => void
   removeItemFromCart: (id: number) => void
   changeItemAmount: (id: number, amount: number) => void
+  buyItems: () => void
 }
 
 export const CartContext = createContext<ICartContext>({} as ICartContext)
@@ -69,11 +71,20 @@ export function CartProvider({ children }: ICartProviderProps) {
     setCartItems(cartItems.filter(({ id }) => id !== itemId))
   }
 
-  console.log(cartItems)
+  function buyItems() {
+    setCartItems([])
+    Router.push('/success')
+  }
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addItemToCart, removeItemFromCart, changeItemAmount }}
+      value={{
+        cartItems,
+        addItemToCart,
+        removeItemFromCart,
+        changeItemAmount,
+        buyItems,
+      }}
     >
       {children}
     </CartContext.Provider>

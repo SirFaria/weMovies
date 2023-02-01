@@ -5,7 +5,7 @@ import { useCart } from '~/contexts/CartContext'
 import { formatToBRL } from '~/utils/currencyFormatter'
 
 export default function Cart() {
-  const { cartItems } = useCart()
+  const { cartItems, buyItems } = useCart()
 
   const totalCost = cartItems.reduce(
     (acc, { amount, price }) => acc + amount * price,
@@ -57,7 +57,10 @@ export default function Cart() {
             {formatToBRL(totalCost)}
           </strong>
         </div>
-        <button className='bg-btn-blue text-white text-sm font-bold w-full py-[11px] px-[60px] uppercase rounded justify-self-end md:w-fit'>
+        <button
+          className='bg-btn-blue text-white text-sm font-bold w-full py-[11px] px-[60px] uppercase rounded justify-self-end md:w-fit'
+          onClick={buyItems}
+        >
           Finalizar pedido
         </button>
       </div>
