@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <CartProvider>
         <Header />
-        <main className='min-h-[calc(100vh-64px)] px-4 pb-4 flex flex-col gap-4 md:flex-row md:flex-wrap md:max-w-[960px] md:p-0 md:mx-auto md:content-start'>
+        <main className='min-h-[calc(100vh-64px)] px-4 pb-4 flex flex-col gap-4 md:flex-row md:flex-wrap md:max-w-[960px] md:p-0 md:mx-auto md:content-start md:justify-center'>
           <Component {...pageProps} />
         </main>
       </CartProvider>
