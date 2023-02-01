@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ICartItems } from '~/contexts/CartContext'
+import { ICartItems, useCart } from '~/contexts/CartContext'
 import { Counter } from './Counter'
 
 interface ICartItemMobileProps {
@@ -7,6 +7,7 @@ interface ICartItemMobileProps {
 }
 
 export function CartItemMobile({ movieData }: ICartItemMobileProps) {
+  const { removeItemFromCart } = useCart()
   const subtotal = movieData.amount * movieData.price
   return (
     <div className='w-full flex gap-4 justify-between md:invisible md:hidden'>
@@ -29,13 +30,15 @@ export function CartItemMobile({ movieData }: ICartItemMobileProps) {
               currency: 'BRL',
             }).format(movieData.price)}
           </strong>
-          <Image
-            width={16}
-            height={18}
-            className=''
-            alt='Ícone de lixeira'
-            src='/assets/trash-can.svg'
-          />
+          <button onClick={() => removeItemFromCart(movieData.id)}>
+            <Image
+              width={16}
+              height={18}
+              className=''
+              alt='Ícone de lixeira'
+              src='/assets/trash-can.svg'
+            />
+          </button>
         </div>
         <div className='flex gap-4 justify-between items-end'>
           <Counter />
