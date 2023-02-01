@@ -25,11 +25,12 @@ export default function Home() {
     return (
       <>
         <Image
-          className='animate-spin m-auto md:mt-[calc(50vh - 72px)]'
-          alt='Carregando itens'
-          src='/assets/loader.png'
+          priority
           width={55.41}
           height={55.41}
+          alt='Carregando itens'
+          src='/assets/loader.png'
+          className='animate-spin m-auto md:mt-[calc(50vh - 72px)]'
         />
       </>
     )
