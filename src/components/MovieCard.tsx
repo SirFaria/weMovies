@@ -6,10 +6,14 @@ interface IMovieCardProps {
 }
 
 export function MovieCard({ movieData }: IMovieCardProps) {
-  const { addItemToCart } = useCart()
+  const { cartItems, addItemToCart } = useCart()
+
+  const thisMovie = cartItems.find(item => item.id === movieData.id)
+
+  const isOnCart = thisMovie?.id === movieData.id
 
   return (
-    <div className='bg-white rounded flex flex-col items-center p-[10px] md:min-w-[309px] md:h-fit'>
+    <div className='bg-white rounded flex flex-col items-center justify-between p-[10px] md:min-w-[309px] md:h- md:min-h-[298px]'>
       <Image
         width={147}
         height={188}
@@ -25,7 +29,9 @@ export function MovieCard({ movieData }: IMovieCardProps) {
         }).format(movieData.price)}
       </span>
       <button
-        className='bg-btn-blue w-full py-[11px] mt-2 flex items-center justify-center rounded'
+        className={` ${
+          isOnCart ? 'bg-btn-green' : 'bg-btn-blue'
+        } w-full py-[11px] mt-2 flex items-center justify-center rounded`}
         onClick={() => addItemToCart(movieData)}
       >
         <Image
@@ -35,9 +41,11 @@ export function MovieCard({ movieData }: IMovieCardProps) {
           alt='Ícone carrinho de compras'
           src='/assets/shopping-cart.svg'
         />
-        <span className='ml-[5px] text-white text-xs font-normal'>0</span>
+        <span className='ml-[5px] text-white text-xs font-normal'>
+          {isOnCart ? thisMovie.amount : '0'}
+        </span>
         <p className='ml-3 text-white font-bold text-xs uppercase'>
-          Adicionar ao carrinho
+          {isOnCart ? 'Item Adicionado' : 'Adicionar ao carrinho'}
         </p>
       </button>
     </div>
